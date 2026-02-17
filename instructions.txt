@@ -1,0 +1,29 @@
+for sophomore plan:
+
+  download majors and minors from portal using CSV, save to inputs/majors.csv, inputs/minors.csv
+
+  left menu -> administrative -> reporting -> bulk print curr. plans 
+   
+     on left side, click magnifying glass to print
+  
+  in inputs, have report.pdf
+  
+     pdftohtml report.pdf
+  
+  open html in browser
+  
+  copy paste into new text file from browser
+  
+  save as in inputs/majors_report.txt
+
+  touch inputs/placements_ocs_etc.txt
+  mkdir outputs
+
+  python ../verify_sophomore_plans.py
+
+
+  
+
+
+
+   
