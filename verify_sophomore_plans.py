@@ -222,7 +222,7 @@ def scrape_report(elookup, filename):
 
     istr = open(filename, 'r')
     print('reading ' + filename)
-    debug = False
+    debug = True
 
     email_id = None
     student = None
