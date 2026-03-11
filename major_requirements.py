@@ -26,12 +26,14 @@ def get_letter_grades():
 
 # for advising
 ENGR_ADVISORS = dict(
-    zucker='mzucker1',
+    # zucker='mzucker1',
     delano='mdelano1',
     everbach='ceverba1',
     molter='lmolter1',
     moser='amoser2',
     piovoso='mpiovos1',
+    vergara='svergara1',
+    masroor='emasroo1'
 )
 
 # get all parse-able grades
@@ -51,7 +53,8 @@ ENGR_XLISTS = dict([
     (('CPSC', '52'), ('ENGR', '25')),
     (('CPSC', '40'), ('ENGR', '26')),
     (('CPSC', '72'), ('ENGR', '27')),
-    (('CPSC', '82'), ('ENGR', '28'))
+    (('CPSC', '82'), ('ENGR', '28')),
+    (('BIOL', '61'), ('ENGR', '16')),
 ])
 
 # ignore all subjects besides these
@@ -64,6 +67,7 @@ ENGR_NONMAJOR_COURSES = set([
     ('ENGR', '4'),
     ('ENGR', '4A'),
     ('ENGR', '7'),
+    ('ENGR', '9'),
     ('ENGR', '10'),
 ])
 
@@ -73,26 +77,19 @@ ENGR_DR = set([('ENGR', '93')])
 ENGR_CORE_COURSES = set([
     ('ENGR', '6'),
     ('ENGR', '11'),
-    ('ENGR', '11A'),
-    ('ENGR', '11B'),
     ('ENGR', '12'),
     ('ENGR', '14'),
-    ('ENGR', '41'),
+    ('ENGR', '17'),
+    ('ENGR', '21'),
+    ('ENGR', '59'),
     ('ENGR', '90'),
-])
-
-# E15 or E19 can be either core or elective, confusingly
-E15_OR_E19 = set([
-    ('ENGR', '15'),
-    ('ENGR', '15A'),
-    ('ENGR', '15B'),
-    ('ENGR', '19'),
 ])
     
 # these courses don't count towards the 8 math/science credits for ENGR
 MATH_SCI_EXCLUSIONS = set([
     ('MATH', '3'),
     ('MATH', '15SP'),
+    ('MATH', '15X'),
     ('MATH', '3X'), # used to designate placement
     ('MATH', '4X'), # used to designate placement
     ('BIOL', '1SP'),
@@ -104,6 +101,7 @@ MATH_SCI_EXCLUSIONS = set([
     ('CHEM', '3A'),
     ('CHEM', '3B'),    
     ('CHEM', '3C'),
+    ('CHEM', '3D'),
 ])
 
 # these courses are taught outside of the Engineering department
@@ -688,12 +686,12 @@ def filter_math_sci(enrollments):
 
 MAJOR_REQUIREMENTS = make_requirements([
     ('E6',  'ENGR', '6', 1.0),
-    ('E11', 'ENGR', '11 11A 11B', 1.0),
+    ('E11', 'ENGR', '11', 1.0),
     ('E12', 'ENGR', '12', 1.0),
-    ('E14', 'ENGR', '14', 1.0),
-    ('E41', 'ENGR', '41', 1.0),
+    ('E14', 'ENGR', '17', 1.0),
+    ('E41', 'ENGR', '21', 1.0),
+    ('E41', 'ENGR', '59', 1.0),
     ('E90', 'ENGR', '90', 1.0),
-    ('E15 or E19', 'ENGR', '15 15A 15B 19', 1.0),
     ('5 ENGR electives', 'ENGR', filter_engr_electives, 5.0),
     ('MATH 33, 34, or 35', 'MATH', '33 34 35 3X 43 44 4X', 0.1),
     ('MATH 43 or 44', 'MATH', '43 44 4X', 0.1),
@@ -703,7 +701,7 @@ MAJOR_REQUIREMENTS = make_requirements([
 ])
 
 MINOR_REQUIREMENTS = make_requirements([
-    ('2+ core courses',  'ENGR', '6 11 11A 11B 12 14 15 15A 15B 19 41', 2.0),
+    ('2+ core courses',  'ENGR', '6 11 12 17 21 59', 2.0),
     ('2+ electives excl DR', 'ENGR', filter_engr_electives_nodr, 2.0),
     ('5 ENGR credits', 'ENGR', filter_engr_nodr, 5.0),
     ('No E90', 'ENGR', '90', -0.01)
