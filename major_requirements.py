@@ -669,7 +669,6 @@ def filter_engr_electives(enrollments):
     enrollments = exclude(ENGR_NONMAJOR_COURSES, enrollments)
     enrollments = exclude(ENGR_CORE_COURSES, enrollments)
     enrollments = at_most(1, TAUGHT_OUTSIDE_ENGR, enrollments)
-    enrollments = excess(1, E15_OR_E19, enrollments)
     enrollments = filter_max1_dr(enrollments)
     return enrollments
 
